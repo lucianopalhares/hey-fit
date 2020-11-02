@@ -21,6 +21,7 @@ module.exports = {
       var token = jwt.sign({ id }, process.env.SECRET, {
         expiresIn: "365d" 
       });
+      
       return res.json({ auth: true, token: token, user: findUser });
 
     } catch (err) {
@@ -54,7 +55,7 @@ module.exports = {
 
       });
 
-      const findUser = await user.findByPk(userId, {include:['event_users']});
+      const findUser = await user.findByPk(userId);
 
       res.json({data:findUser});
       
