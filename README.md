@@ -1,5 +1,29 @@
 # HEY-FIT
 
+# description
+```bash
+
+1 - Criar uma aplicação capaz de ler uma tabela de pessoas em um
+banco de dados qualquer e realizar filtros.
+2 - Listar essas informações em tabela simples. (conforme layout
+escolhido)
+3 - Permitir filtros.
+
+Filtros desejados:
+
+Pessoas acima do peso, no peso ideal e abaixo do peso.
+Pessoas altas, medianas, baixas
+Pessoas intolerantes a lactose
+Pessoas atletas
+Utilizar tabela abaixo para a relação:
+1,80 < Altos
+1,60 - 1,79 - Medianos
+1,59 > - Baixos
+90 < - Acima do peso
+70 - 89 > Peso ideal
+69 > Abaixo do peso
+```
+
 ## client - (FRONT - nuxt)
 
 ```bash
