@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+    <!--
       <v-banner
         single-line
         color="secondary"
@@ -15,7 +15,7 @@
         Dashboard
     
       </v-banner>
-
+-->
       <v-divider
         class="mx-2"
         inset
@@ -108,8 +108,6 @@
         
       </v-toolbar>
 
-    <v-row>
-      <v-col>
 
       <v-text-field
         v-model="search"
@@ -117,17 +115,29 @@
         class="mx-4"
       ></v-text-field>
 
-      </v-col>
-      <v-col>
-
+ 
+<!--
       <v-select
           :items="filters"
           label="Filtro"
           @change="filter($event)"
       ></v-select>
+-->
+        <v-select
+          v-model="selecteds"
+          :items="filters"
+          label="Filtro"
+          multiple
+          chips
+          dense
+          hint="Selecione para filtrar as pessoas"
+          persistent-hint
+          deletable-chips
+          class="mx-4"
+          @change="filter($event)"
+        ></v-select>
 
-      </v-col>
-    </v-row>
+ 
 
     </template>
 
@@ -184,8 +194,11 @@
     data: () => ({
       search:'',
       data:[],
-      filters: ['Selecione o Filtro','Acima do Peso', 'Peso Ideal', 'Abaixo do Peso', 'Pessoas Altas','Pessoas Medianas','Pessoas Baixas',
+      pesoSelecionado: false,
+      alturaSelecionada: false,
+      filters: ['Acima do Peso', 'Peso Ideal', 'Abaixo do Peso', 'Pessoas Altas','Pessoas Medianas','Pessoas Baixas',
       'Pessoas Intolerantes a Lactose','Pessoas Atletas'],
+      selecteds: []
     }),
     layout: "default",
     components: {
@@ -216,8 +229,8 @@
           { text: 'Nome', value: 'name' },
           { text: 'Altura', value: 'height' },
           { text: 'Peso', value: 'weight' },
-          { text: 'Lactose', value: 'lactose_intolerance' },
-          { text: 'Atleta', value: 'athlete' },
+          { text: 'Intolerante a Lactose', value: 'lactose_intolerance' },
+          { text: 'É Atleta', value: 'athlete' },
           { text: 'Opções', value: 'actions', sortable: false },          
         ]
       },
@@ -250,44 +263,162 @@
         this.$store.dispatch('person/item',Object.assign({}, item));  
         this.$store.dispatch('person/indexItem',this.items.indexOf(item));
       },
-      filter ( event ) {
+      filter ( selecteds ) {
 
+        //this.filters = this.filters_original
+       
         this.data = []
 
         var filter = this.items
 
-        if(event=='Acima do Peso'){
-          filter = filter.filter((item) => {
-            return parseInt(item.weight) >= 90
-          })
-        }else if(event=='Peso Ideal'){
-          filter = filter.filter((item) => {
-            return item.weight >= 70 && item.weight <= 89
-          })
-        }else if(event=='Abaixo do Peso'){
-          filter = filter.filter((item) => {
-            return item.weight <= 70
-          })
-        }else if(event=='Pessoas Altas'){
-          filter = filter.filter((item) => {
-            return item.height >= 180
-          })
-        }else if(event=='Pessoas Medianas'){
-          filter = filter.filter((item) => {
-            return item.height >= 160 && item.height <= 179
-          })
-        }else if(event=='Pessoas Baixas'){
-          filter = filter.filter((item) => {
-            return item.height <= 159
-          })
-        }else if(event=='Pessoas Intolerantes a Lactose'){
-          filter = filter.filter((item) => {
-            return item.lactose_intolerance == true
-          })
-        }else if(event=='Pessoas Atletas'){
-          filter = filter.filter((item) => {
-            return item.athlete == true
-          })
+        let pesoSelecionado = ''
+        let alturaSelecionada = ''
+
+        for(var i=0;i<selecteds.length;i++){
+
+          let event = selecteds[i]
+
+          if(event=='Acima do Peso'){
+
+            if(pesoSelecionado){
+
+              let index = this.selecteds.indexOf(event)
+              this.selecteds.splice(index, 1)
+
+              this.$toast.error("Peso Já Selecionado. Remova:'"+pesoSelecionado+"'",{
+                position:'top-right',
+                duration:3000,
+                keepOnHover:true
+              })
+
+            }else{
+
+              filter = filter.filter((item) => {
+                return parseInt(item.weight) >= 90
+              })
+
+              pesoSelecionado = event
+            }
+
+          }else if(event=='Peso Ideal'){
+
+            if(pesoSelecionado){
+
+              let index = this.selecteds.indexOf(event)
+              this.selecteds.splice(index, 1)
+
+              this.$toast.error("Peso Já Selecionado. Remova:'"+pesoSelecionado+"'",{
+                position:'top-right',
+                duration:3000,
+                keepOnHover:true
+              })
+
+            }else{
+
+              filter = filter.filter((item) => {
+                return item.weight >= 70 && item.weight <= 89
+              })
+
+              pesoSelecionado = event
+            }
+
+          }else if(event=='Abaixo do Peso'){
+
+            if(pesoSelecionado){
+
+              let index = this.selecteds.indexOf(event)
+              this.selecteds.splice(index, 1)
+
+              this.$toast.error("Peso Já Selecionado. Remova:'"+pesoSelecionado+"'",{
+                position:'top-right',
+                duration:3000,
+                keepOnHover:true
+              })
+
+            }else{
+
+              filter = filter.filter((item) => {
+                return item.weight <= 70
+              })
+
+              pesoSelecionado = event
+            }
+
+          }else if(event=='Pessoas Altas'){
+
+            if(alturaSelecionada){
+
+              let index = this.selecteds.indexOf(event)
+              this.selecteds.splice(index, 1)
+
+              this.$toast.error("Altura Já Selecionada. Remova:'"+alturaSelecionada+"'",{
+                position:'top-right',
+                duration:3000,
+                keepOnHover:true
+              })
+
+            }else{
+
+              filter = filter.filter((item) => {
+                return item.height >= 180
+              })
+
+              alturaSelecionada = event
+            }            
+         
+          }else if(event=='Pessoas Medianas'){
+
+            if(alturaSelecionada){
+
+              let index = this.selecteds.indexOf(event)
+              this.selecteds.splice(index, 1)
+
+              this.$toast.error("Altura Já Selecionada. Remova:'"+alturaSelecionada+"'",{
+                position:'top-right',
+                duration:3000,
+                keepOnHover:true
+              })
+
+            }else{
+
+              filter = filter.filter((item) => {
+                return item.height >= 160 && item.height <= 179
+              })
+
+              alturaSelecionada = event
+            }         
+
+          }else if(event=='Pessoas Baixas'){
+
+            if(alturaSelecionada){
+
+              let index = this.selecteds.indexOf(event)
+              this.selecteds.splice(index, 1)
+
+              this.$toast.error("Altura Já Selecionada. Remova:'"+alturaSelecionada+"'",{
+                position:'top-right',
+                duration:3000,
+                keepOnHover:true
+              })
+
+            }else{
+
+              filter = filter.filter((item) => {
+                return item.height <= 159
+              })
+
+              alturaSelecionada = event
+            }          
+
+          }else if(event=='Pessoas Intolerantes a Lactose'){
+            filter = filter.filter((item) => {
+              return item.lactose_intolerance == true
+            })
+          }else if(event=='Pessoas Atletas'){
+            filter = filter.filter((item) => {
+              return item.athlete == true
+            })
+          }
         }
         
         this.data = filter;
