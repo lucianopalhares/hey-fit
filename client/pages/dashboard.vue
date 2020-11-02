@@ -44,35 +44,66 @@
 
       <v-toolbar
         flat
-        dark
+        color="success"
       >
-        <v-toolbar-title >Pessoas</v-toolbar-title>
+
+        <v-toolbar-title >        
+          <v-icon
+          slot="icon"
+          color="default"
+          size="36"
+          class="mr-5"
+        >
+          mdi-account-switch
+        </v-icon>
+        Pessoas
+        </v-toolbar-title>
+
         <v-divider
           class="mx-4"
           inset
           vertical
         ></v-divider>
+
         <v-spacer></v-spacer>
+        
+     <v-badge
+        bordered
+        color="primary"
+        icon="mdi-refresh"
+        overlap        
+      >
+        <v-btn
+          class="white--text"
+          color="info"
+          depressed
+          @click="fetchData()"
+        >
+          Atualizar
+        </v-btn>
+      </v-badge>
+        <v-divider
+          class="mx-1"
+          inset
+          vertical
+        ></v-divider>
+       
 
-            <v-icon
-              small
-              class="mr-2"
-              dark
-              @click="fetchData()"
-            >
-              mdi-refresh
-            </v-icon>
-
-          <v-spacer></v-spacer>
-
-            <v-icon
-              small
-              class="mr-2"
-              dark
-              @click="dialogItem({},'create')"
-            >
-              mdi-plus
-            </v-icon>
+    <v-badge
+        bordered
+        color="error"
+        icon="mdi-plus"
+        overlap        
+      >
+        <v-btn
+          class="white--text"
+          color="info"
+          depressed
+          @click="dialogItem({},'create')"
+        >
+          Nova Pessoa
+        </v-btn>
+      </v-badge>
        
         
       </v-toolbar>
@@ -221,38 +252,40 @@
       },
       filter ( event ) {
 
+        this.data = []
+
         var filter = this.items
 
         if(event=='Acima do Peso'){
-          filter = this.data.filter((item) => {
-            return item.weight >= 90
+          filter = filter.filter((item) => {
+            return parseInt(item.weight) >= 90
           })
         }else if(event=='Peso Ideal'){
-          filter = this.data.filter((item) => {
+          filter = filter.filter((item) => {
             return item.weight >= 70 && item.weight <= 89
           })
         }else if(event=='Abaixo do Peso'){
-          filter = this.data.filter((item) => {
+          filter = filter.filter((item) => {
             return item.weight <= 70
           })
         }else if(event=='Pessoas Altas'){
-          filter = this.data.filter((item) => {
+          filter = filter.filter((item) => {
             return item.height >= 180
           })
         }else if(event=='Pessoas Medianas'){
-          filter = this.data.filter((item) => {
+          filter = filter.filter((item) => {
             return item.height >= 160 && item.height <= 179
           })
         }else if(event=='Pessoas Baixas'){
-          filter = this.data.filter((item) => {
+          filter = filter.filter((item) => {
             return item.height <= 159
           })
         }else if(event=='Pessoas Intolerantes a Lactose'){
-          filter = this.data.filter((item) => {
+          filter = filter.filter((item) => {
             return item.lactose_intolerance == true
           })
         }else if(event=='Pessoas Atletas'){
-          filter = this.data.filter((item) => {
+          filter = filter.filter((item) => {
             return item.athlete == true
           })
         }

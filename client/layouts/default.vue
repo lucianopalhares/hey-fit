@@ -100,9 +100,8 @@
    <v-app-bar app>   
      
      <v-app-bar-nav-icon @click="sidebarLeft = !sidebarLeft"></v-app-bar-nav-icon>  
-
   
-         
+      <v-spacer></v-spacer>
 
       <v-tooltip right>
         <template v-slot:activator="{ on, attrs }">
