@@ -69,18 +69,18 @@ $ config/tables.sql
 ```
 ## images
 
-<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/1.png" width="400"></p>
+<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/1.png"></p>
 
-<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/2.png" width="400"></p>
+<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/2.png"></p>
 
-<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/3.png" width="400"></p>
+<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/3.png"></p>
 
-<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/4.png" width="400"></p>
+<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/4.png"></p>
 
-<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/5.png" width="400"></p>
+<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/5.png"></p>
 
-<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/6.png" width="400"></p>
+<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/6.png"></p>
 
-<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/7.png" width="400"></p>
+<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/7.png"></p>
 
-<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/8.png" width="400"></p>
+<p align="center"><img src="https://github.com/lucianopalhares/hey-fit/blob/main/client/assets/images/prints/8.png"></p>
